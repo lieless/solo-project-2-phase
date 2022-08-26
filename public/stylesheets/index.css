@@ -1,3 +1,12 @@
+html {
+  height: 100%;
+  background:  rgb(209, 206, 199);
+}
+
+#root {
+  background: rgb(209, 206, 199);
+}
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -15,10 +24,48 @@
   margin: 30px auto;
   gap: 40px;
 }
+.container {
+  width: 70%;
+  margin: 30px auto;
+}
 .addForm {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 20px auto;
+  margin: 20px auto;  width: 70%;
+  margin: 30px auto;
   width: 70%;
+}
+
+.spinner {
+  visibility: visible;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

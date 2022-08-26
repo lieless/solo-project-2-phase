@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 
-function Form({ setUrls, setPeriod }) {
+function Form({ setUrls, setLoader }) {
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoader(true);
+    setUrls([]);
     const { region, period } = Object.fromEntries(new FormData(e.target));
     const regions = await fetch('/api/regions');
     // const regions = await fetch('https://api.windy.com/api/webcams/v2/list?show=regions', {
@@ -28,13 +30,13 @@ function Form({ setUrls, setPeriod }) {
     // const camsArr = data.result.webcams;
     console.log(camsArr);
     setUrls(camsArr);
-    setPeriod(period);
+    setLoader(false);
   };
   return (
     <div>
       <form onSubmit={submitHandler}>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Регион</label>
+          <label htmlFor="exampleInputEmail1">Регион:</label>
           <input name="region" type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите название региона" />
         </div>
         <select name="period" defaultValue="lifetime" className="form-select" aria-label="Default select example">
@@ -42,7 +44,7 @@ function Form({ setUrls, setPeriod }) {
           <option value="day">День</option>
           <option value="month">Меясц</option>
           <option value="year">Год</option>
-          <option value="lifetime">Вся продолжительность жизни камеры</option>
+          <option value="lifetime">Полная запись с камеры</option>
           <option value="live">Режим Live *есть не на всех камерах*</option>
         </select>
         <button type="submit" className="btn btn-primary">Найти</button>
